@@ -9,6 +9,7 @@ namespace RGEngine
     {
         static Screen _activescreen;
         static List<Screen> _screenList = new List<Screen>();
+        private bool _creationByActivation = false;
         public static Screen ActiveScreen { get { return _activescreen; } }
 
         /// <summary>
@@ -39,6 +40,22 @@ namespace RGEngine
         public static event Action<Screen,Screen> OnScreenChange;
 
         /// <summary>
+        /// Returns the instance of the screentemplate. If the screen is not loaded, it will
+        /// run the screens constructor, but not it's OnActivate.
+        /// </summary>
+        /// <typeparam name="ScreenTemplate">The screen to return an istance of</typeparam>
+        /// <returns>A screen instance from the Screenlist</returns>
+        public static Screen GetScreenInstance<ScreenTemplate>()
+        {
+            if (typeof(ScreenTemplate).Name == "Screen") { throw new InvalidCastException("Cannot fetch a non derived Screen object"); }
+            if (!typeof(ScreenTemplate).IsSubclassOf(typeof(Screen))) { throw new InvalidCastException("Cannot fetch a class not derived from Screen"); }
+            if (!_screenList.Any(s => s.GetType() == typeof(ScreenTemplate))) //The screen doesn't exists
+            {
+                LoadScreen<ScreenTemplate>();
+            }
+            return _screenList.First(s => s.GetType() == typeof(ScreenTemplate));
+        }
+        /// <summary>
         /// Activates a screen by type. This will instantiate a new screen if there is none created from earlier
         /// The OnActivate will get invoked with a true parameter if this is the first time, and false if the screen
         /// is allready loaded.
@@ -55,13 +72,35 @@ namespace RGEngine
                 {
                     return;
                 }
-                _screenList.ForEach(s => { if (s.GetType() == typeof(ScreenTemplate)) { s._activate(true); } });
+                _screenList.ForEach(s => { if (s.GetType() == typeof(ScreenTemplate)) { s._activate(false); } });
             }
             else
             {
                 Screen _made = Activator.CreateInstance(typeof(ScreenTemplate)) as Screen;
-                _screenList.Add(_activescreen);
-                _made._activate(false);
+                _made._creationByActivation = true;
+                _screenList.Add(_made);
+                _made._activate(true);
+            }
+        }
+        /// <summary>
+        /// Loads, but doesn't activate a screen by type. This will instantiate a new screen if there is none created from earlier
+        /// The OnActivate will not get invoked until ActivateScreen is called.
+        /// </summary>
+        /// <typeparam name="ScreenTemplate">The screen to activate</typeparam>
+        internal static void LoadScreen<ScreenTemplate>()
+        {
+            if (typeof(ScreenTemplate).Name == "Screen") { throw new InvalidCastException("Cannot load a non derived Screen object"); }
+            if (!typeof(ScreenTemplate).IsSubclassOf(typeof(Screen))) { throw new InvalidCastException("Cannot load a class not derived from Screen"); }
+            if (_screenList.Any(s => s.GetType() == typeof(ScreenTemplate))) //The screen exists
+            {
+                //No need to load a screen that allready exists.
+                return;
+            }
+            else
+            {
+                Screen _made = Activator.CreateInstance(typeof(ScreenTemplate)) as Screen;
+                _made._creationByActivation = true;
+                _screenList.Add(_made);
             }
         }
         internal static bool UnloadScreen<ScreenTemplate>()
@@ -79,6 +118,7 @@ namespace RGEngine
                     if (_screenList[i].GetType() == typeof(ScreenTemplate))
                     {
                         _screenList[i]._unload();
+                        _screenList[i] = null; //Is this necessary ?
                         _screenList.RemoveAt(i);
                         return true;
                     }
@@ -90,11 +130,21 @@ namespace RGEngine
         {
             return "Why whould you cast this to a string?!?";
         }
-        void _activate(bool reactivating)
+        void _activate(bool first_time_activation)
         {
+            if (!_creationByActivation)
+            {
+                //The screen was created by a new statement somewhere else than Screen.ActivateScreen<T>
+                if (_screenList.Any(s => s.GetType() == this.GetType())) //The screen allready exists
+                {
+                    throw new OverflowException(this.GetType().ToString() + " instantiated twice");
+                }
+                _screenList.Add(this);
+                _creationByActivation = true;
+            }
             if (OnScreenChange != null && _activescreen != null) { OnScreenChange.Invoke(this, _activescreen); }
             _activescreen = this;
-            if (OnActivate != null) { OnActivate.Invoke(reactivating); }
+            if (OnActivate != null) { OnActivate.Invoke(first_time_activation); }
         }
         void _deactivate()
         {
