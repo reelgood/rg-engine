@@ -16,22 +16,16 @@ namespace RGEngine
 			_toDispose.Add(obj);
 		}
 
-		public void Dispose()
+		public virtual void Dispose()
 		{
 			if (_toDispose == null) return;
 			for (int i = 0; i < _toDispose.Count; i++)
 			{
 				_toDispose[i].Dispose();
-				if (_toDispose[i] is gameElement)
-				{
-					var tmp = _toDispose[i] as gameElement;
-					tmp.OnDispose();
-				}
+				_toDispose[i] = null;
 			}
 			_toDispose.Clear();
 			_toDispose = null;
 		}
-
-		protected virtual void OnDispose() { }
 	}
 }

@@ -11,7 +11,7 @@ namespace RGEngine
 				
 		public void Run()
 		{
-			_graphics = new GraphicSystem(_mainLoop);
+			_graphics = new GraphicSystem(_logic, _render);
 			Initialize();
 			_gob_controller = new GameObjectController();
 
@@ -27,12 +27,27 @@ namespace RGEngine
 			Input.Initialize(_graphics.renderForm);
 		}
 
-		private void _mainLoop()
+		private void _logic()
 		{
 			Hook.RunStartMethods();
 			Time.Update();
 			Input.GatherInput();
 			Hook.DoUpdate();
+		}
+
+		private void _render()
+		{
+			Hook.DoPreRenderLoop();
+			_graphics.graphicDevice.Clear(ClearFlags.ZBuffer | ClearFlags.Target, Color.Black, 0.0f, 0);
+			_graphics.graphicDevice.BeginScene();
+
+			Hook.DoRender();
+			Hook.DoGUI();
+			Debug.Print();
+
+			_graphics.graphicDevice.EndScene();
+			_graphics.graphicDevice.Present();
+			Hook.DoPostRenderLoop();
 		}
 
 		protected void Exit()

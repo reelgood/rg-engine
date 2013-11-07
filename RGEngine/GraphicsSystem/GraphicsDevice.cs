@@ -5,6 +5,7 @@ namespace RGEngine
 {
 	public class GraphicsDevice : gameElement
 	{
+
 		Device _device;
 		Direct3D _direct3D;
 		GraphicSystem _graphicsSystem;
@@ -21,6 +22,7 @@ namespace RGEngine
 			_presentParameters.InitDefaults();
 			_presentParameters.BackBufferWidth = graphicSystem.DefaultScreenWidth;
 			_presentParameters.BackBufferHeight = graphicSystem.DefaultScreenHeight;
+
 		}
 
 		internal void CreateDevice(IntPtr FormHandle)

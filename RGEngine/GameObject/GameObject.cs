@@ -12,9 +12,7 @@ namespace RGEngine
 		internal Renderer _renderer;
 		internal MeshFilter _meshFilter;
 		private List<Component> _components;
-
-
-
+		
 		/// <summary>
 		/// Creates a new GameObject
 		/// </summary>
@@ -77,23 +75,28 @@ namespace RGEngine
 			for (int i = 0; i < _components.Count; i++) _components[i]._update();
 		}
 
-		public static void Destroy(GameObject gameObject)
+		protected override void Render()
 		{
-
-			for (int i = 0; i < gameObject._components.Count; i++)
-			{
-				gameObject._components[i].Dispose();
-				gameObject._components[i] = null;
-			}
+			if (_components == null) return;
+			for (int i = 0; i < _components.Count; i++) _components[i]._render();
 		}
 
-
-
-
-		protected override void OnDispose()
+		protected override void GUI()
+		{
+			if (_components == null) return;
+			for (int i = 0; i < _components.Count; i++) _components[i]._gui();
+		}
+		
+		public override void Dispose()
 		{
 
-			Debug.Log("DISPOSING GOB!!", 500);
+			base.Dispose();
+		}
+
+		public static void Destroy(GameObject gameObject)
+		{
+			gameObject.Dispose();
+			gameObject = null;
 		}
 	}
 }

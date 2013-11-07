@@ -11,58 +11,48 @@ namespace RGEngine
 		public readonly int DefaultScreenHeight = 600;
 		
 		GraphicsDevice _graphicsDevice;
-		RenderForm _form;
-		RenderLoop.RenderCallback _mainLoop;
+		RenderForm _renderForm;
+
+		RenderLoop.RenderCallback _logicMethod;
+		RenderLoop.RenderCallback _renderMethod;
 
 		public Device graphicDevice { get { return _graphicsDevice.Device; } }
-		public RenderForm renderForm { get { return _form; } }
+		public RenderForm renderForm { get { return _renderForm; } }
 
-
-		public GraphicSystem(RenderLoop.RenderCallback mainLoopMethod)
+		public GraphicSystem(RenderLoop.RenderCallback LogicMethod, RenderLoop.RenderCallback RenderMethod)
 		{
-			_mainLoop = mainLoopMethod;
-			_form = new RenderForm();
-
+			_logicMethod = LogicMethod;
+			_renderMethod = RenderMethod;
+			_renderForm = new RenderForm();
 			_graphicsDevice = new GraphicsDevice(this);
-			_graphicsDevice.CreateDevice(_form.Handle);
-		}
-
-		public GraphicSystem(Delegate mainLoopMethod, Delegate renderFunction)
-		{
-			_mainLoop = mainLoopMethod as RenderLoop.RenderCallback;
-			_form = new RenderForm();
-
-			_graphicsDevice = new GraphicsDevice(this);
-			_graphicsDevice.CreateDevice(_form.Handle);
+			_graphicsDevice.CreateDevice(_renderForm.Handle);
 		}
 
 
 		internal void StartRenderLoop()
 		{
-			RenderLoop.Run(_form, _renderLoop);
+			RenderLoop.Run(_renderForm, loop);
 		}
+
+		private void loop()
+		{
+			_logicMethod();
+			_renderMethod();
+		}
+
+
 
 		private void _renderLoop()
 		{
-			_mainLoop();
 
-			Hook.DoPreRenderLoop();
-			_graphicsDevice.Device.Clear(ClearFlags.ZBuffer | ClearFlags.Target, Color.Black, 0.0f, 0);
-			_graphicsDevice.Device.BeginScene();
 
-			Hook.DoRender();
-			Hook.DoGUI();
-			Debug.Print();
 
-			_graphicsDevice.Device.EndScene();
-			_graphicsDevice.Device.Present();
-			Hook.DoPostRenderLoop();
 		}
 
 
 		internal void StopRenderLoop()
 		{
-			_form.Close();
+			_renderForm.Close();
 		}
 	}
 }
