@@ -36,6 +36,10 @@ namespace RGEngine
 			Hook.DoUpdate();
 		}
 
+		private void _graphicLoop()
+		{
+
+		}
 
 
 		protected void Exit()

@@ -17,11 +17,21 @@ namespace RGEngine
 		public Device graphicDevice { get { return _graphicsDevice.Device; } }
 		public RenderForm renderForm { get { return _form; } }
 
+
 		public GraphicSystem(RenderLoop.RenderCallback mainLoopMethod)
 		{
 			_mainLoop = mainLoopMethod;
 			_form = new RenderForm();
-			
+
+			_graphicsDevice = new GraphicsDevice(this);
+			_graphicsDevice.CreateDevice(_form.Handle);
+		}
+
+		public GraphicSystem(Delegate mainLoopMethod, Delegate renderFunction)
+		{
+			_mainLoop = mainLoopMethod as RenderLoop.RenderCallback;
+			_form = new RenderForm();
+
 			_graphicsDevice = new GraphicsDevice(this);
 			_graphicsDevice.CreateDevice(_form.Handle);
 		}
