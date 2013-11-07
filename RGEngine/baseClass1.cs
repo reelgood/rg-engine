@@ -22,7 +22,7 @@ namespace RGEngine
 				_toDispose[i].Dispose();
 			}
 			_toDispose.Clear();
-			_toDispose = null;
+			_toDispose = null; 
 		}
 	}
 }
