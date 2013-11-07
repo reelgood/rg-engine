@@ -1,6 +1,7 @@
 ﻿using System;
 using SharpDX;
 using SharpDX.Direct3D9;
+using RGEngine.HelperObjects;
 
 namespace RGEngine
 {
@@ -11,10 +12,12 @@ namespace RGEngine
 				
 		public void Run()
 		{
+            Controllers.Application = this;
 			_graphics = new GraphicSystem(_mainLoop);
+            Controllers.GraphicSystem = _graphics;
+            
 			Initialize();
-			_gob_controller = new GameObjectController();
-
+            Controllers.GameObjectController = new GameObjectController();
 
 			_graphics.StartRenderLoop(); // MUST ALWAYS BE LAST!
 		}

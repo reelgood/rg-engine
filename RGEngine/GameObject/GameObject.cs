@@ -20,6 +20,7 @@ namespace RGEngine
 		/// </summary>
 		public GameObject()
 		{
+            RGEngine.HelperObjects.Controllers.GameObjectController.UpdateMe(this);
 			_components = new List<Component>();
 			_setGameObject(this);
 			AddComponent(typeof(Transform));
@@ -79,7 +80,7 @@ namespace RGEngine
 
 		public static void Destroy(GameObject gameObject)
 		{
-
+            RGEngine.HelperObjects.Controllers.GameObjectController.ForgetMe(this);
 			for (int i = 0; i < gameObject._components.Count; i++)
 			{
 				gameObject._components[i].Dispose();
