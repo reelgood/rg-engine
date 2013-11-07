@@ -58,12 +58,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application.cs" />
-    <Compile Include="baseClass3.cs" />
-    <Compile Include="baseClass2.cs" />
-    <Compile Include="baseClass1.cs" />
+    <Compile Include="GameObject\gameComponent.cs" />
+    <Compile Include="gameController.cs" />
+    <Compile Include="gameElement.cs" />
+    <Compile Include="GameObjectController.cs" />
     <Compile Include="GameObject\Component\Camera.cs" />
     <Compile Include="GameObject\Component.cs" />
     <Compile Include="GameObject\GameObject.cs" />
+    <Compile Include="HelperObjects\Controllers.cs" />
     <Compile Include="HelperObjects\Debug.cs" />
     <Compile Include="GraphicsSystem\GraphicsDevice.cs" />
     <Compile Include="GraphicsSystem\GraphicSystem.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="HelperObjects\Time.cs" />
     <Compile Include="GameObject\Component\Transform.cs" />
     <Compile Include="GameObject\Component\Renderer.cs" />
+    <Compile Include="Screen\Screen.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="BaseClassDiagram.cd" />

@@ -5,49 +5,42 @@ using System.Text;
 
 namespace RGEngine
 {
-	public class GameObject : baseClass3
+	public class GameObject : gameComponent
 	{
 		internal Transform _transform;
 		internal Camera _camera;
 		internal Renderer _renderer;
 		internal MeshFilter _meshFilter;
 		private List<Component> _components;
-
-
-
+		
 		/// <summary>
 		/// Creates a new GameObject
 		/// </summary>
 		public GameObject()
 		{
+			
+			_components = new List<Component>();
 			_setGameObject(this);
 			AddComponent(typeof(Transform));
 		}
 
+		protected override void Start()
+		{
+			Controllers.GameObjectController.UpdateMe(this);
+		}
 		/// <summary>
 		/// Creates a new GameObject, with name
 		/// </summary>
 		/// <param name="Name">Name of the GameObject</param>
 		public GameObject(string Name)
 		{
+			Controllers.GameObjectController.UpdateMe(this);
+			_components = new List<Component>();
 			_setGameObject(this);
 			AddComponent(typeof(Transform));
 		}
 
-		internal void _update()
-		{
-			throw new System.NotImplementedException();
-		}
 
-		internal void _render()
-		{
-			throw new System.NotImplementedException();
-		}
-
-		internal void _ongui()
-		{
-			throw new System.NotImplementedException();
-		}
 
 		public Component AddComponent(Type componentType)
 		{
@@ -66,7 +59,6 @@ namespace RGEngine
 
 			_components.Add(c);
 			c._setGameObject(this);
-
 			ToDispose(c);
 			return c;
 		}
@@ -81,6 +73,38 @@ namespace RGEngine
 				}
 			}
 			return null;
+		}
+
+
+		protected override void Update()
+		{
+			if (_components == null) return;
+			for (int i = 0; i < _components.Count; i++) _components[i]._update();
+		}
+
+		protected override void Render()
+		{
+			if (_components == null) return;
+			for (int i = 0; i < _components.Count; i++) _components[i]._render();
+		}
+
+		protected override void GUI()
+		{
+			if (_components == null) return;
+			for (int i = 0; i < _components.Count; i++) _components[i]._gui();
+		}
+		
+		public override void Dispose()
+		{
+
+			base.Dispose();
+		}
+
+		public static void Destroy(GameObject gameObject)
+		{
+			Controllers.GameObjectController.ForgetMe(gameObject);
+			gameObject.Dispose();
+			gameObject = null;
 		}
 	}
 }
