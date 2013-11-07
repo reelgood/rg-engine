@@ -4,9 +4,10 @@ namespace RGEngine
 {
 	public abstract class baseClass3 : baseClass2
 	{
-
-
 		private GameObject _gameObject;
+
+
+
 
 		public Transform Transform
 		{

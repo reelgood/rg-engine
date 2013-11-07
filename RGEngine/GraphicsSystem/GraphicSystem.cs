@@ -7,26 +7,52 @@ namespace RGEngine
 {
 	public class GraphicSystem : baseClass1
 	{
+		public readonly int DefaultScreenWidth = 800;
+		public readonly int DefaultScreenHeight = 600;
+		
 		GraphicsDevice _graphicsDevice;
 		RenderForm _form;
-
 		RenderLoop.RenderCallback _mainLoop;
+
+		public Device graphicDevice { get { return _graphicsDevice.Device; } }
+		public RenderForm renderForm { get { return _form; } }
 
 		public GraphicSystem(RenderLoop.RenderCallback mainLoopMethod)
 		{
 			_mainLoop = mainLoopMethod;
 			_form = new RenderForm();
 			
+			_graphicsDevice = new GraphicsDevice(this);
+			_graphicsDevice.CreateDevice(_form.Handle);
 		}
 
-		public void Start()
+
+		internal void StartRenderLoop()
 		{
-			RenderLoop.Run(_form, _mainLoop);
+			RenderLoop.Run(_form, _renderLoop);
 		}
 
-		public void test()
+		private void _renderLoop()
 		{
+			_mainLoop();
 
+			Hook.DoPreRenderLoop();
+			_graphicsDevice.Device.Clear(ClearFlags.ZBuffer | ClearFlags.Target, Color.Black, 0.0f, 0);
+			_graphicsDevice.Device.BeginScene();
+
+			Hook.DoRender();
+			Hook.DoGUI();
+			Debug.Print();
+
+			_graphicsDevice.Device.EndScene();
+			_graphicsDevice.Device.Present();
+			Hook.DoPostRenderLoop();
+		}
+
+
+		internal void StopRenderLoop()
+		{
+			_form.Close();
 		}
 	}
 }

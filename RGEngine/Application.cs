@@ -7,28 +7,40 @@ namespace RGEngine
 	public class Application : baseClass2
 	{
 		private GraphicSystem _graphics;
-
-
+				
 		public void Run()
 		{
-			_init();
-
-
-		}
-
-
-
-		private void _init()
-		{
 			_graphics = new GraphicSystem(_mainLoop);
-			_graphics.Start();
+			Initialize();
+			_graphics.StartRenderLoop();
+
+			Hook.AddMethod(Render, HookType.Render);
+			Hook.AddMethod(OnGUI, HookType.GUI);
 		}
 
 
+		private void Initialize()
+		{
+			Time.Initialize();
+			Debug.Initialize(_graphics.graphicDevice);
+			Input.Initialize(_graphics.renderForm);
+		}
 
 		private void _mainLoop()
 		{
-			_graphics.test();
+			// TODO: Run start functions here
+
+			Time.Update();
+			Input.GatherInput();
+			Update();
+			Hook.DoUpdate();
+		}
+
+
+
+		protected void Exit()
+		{
+			_graphics.StopRenderLoop();
 		}
 	}
 }
