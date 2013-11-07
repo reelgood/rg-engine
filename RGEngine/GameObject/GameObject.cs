@@ -18,21 +18,28 @@ namespace RGEngine
 		/// </summary>
 		public GameObject()
 		{
+			
 			_components = new List<Component>();
 			_setGameObject(this);
 			AddComponent(typeof(Transform));
 		}
 
+		protected override void Start()
+		{
+			Controllers.GameObjectController.UpdateMe(this);
+		}
 		/// <summary>
 		/// Creates a new GameObject, with name
 		/// </summary>
 		/// <param name="Name">Name of the GameObject</param>
 		public GameObject(string Name)
 		{
+			Controllers.GameObjectController.UpdateMe(this);
 			_components = new List<Component>();
 			_setGameObject(this);
 			AddComponent(typeof(Transform));
 		}
+
 
 
 		public Component AddComponent(Type componentType)
@@ -95,6 +102,7 @@ namespace RGEngine
 
 		public static void Destroy(GameObject gameObject)
 		{
+			Controllers.GameObjectController.ForgetMe(gameObject);
 			gameObject.Dispose();
 			gameObject = null;
 		}

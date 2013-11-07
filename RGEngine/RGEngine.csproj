@@ -65,6 +65,7 @@
     <Compile Include="GameObject\Component\Camera.cs" />
     <Compile Include="GameObject\Component.cs" />
     <Compile Include="GameObject\GameObject.cs" />
+    <Compile Include="HelperObjects\Controllers.cs" />
     <Compile Include="HelperObjects\Debug.cs" />
     <Compile Include="GraphicsSystem\GraphicsDevice.cs" />
     <Compile Include="GraphicsSystem\GraphicSystem.cs" />

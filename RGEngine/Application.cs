@@ -7,14 +7,14 @@ namespace RGEngine
 	public class Application : gameController
 	{
 		private GraphicSystem _graphics;
-        private GameObjectController _gob_controller;
-				
+
 		public void Run()
 		{
+			Controllers.GameObjectController = new GameObjectController();
 			_graphics = new GraphicSystem(_logic, _render);
+			Controllers.Application = this;
+			Controllers.GraphicSystem = _graphics;
 			Initialize();
-			_gob_controller = new GameObjectController();
-
 
 			_graphics.StartRenderLoop(); // MUST ALWAYS BE LAST!
 		}
