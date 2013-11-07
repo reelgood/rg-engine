@@ -5,8 +5,9 @@ using System.Text;
 
 namespace RGEngine
 {
-    public class Screen : baseClass2
+    public class Screen : gameController
     {
-
+        static Screen _activescreen;
+        static List<Screen> _screenList = new List<Screen>();
     }
 }

@@ -5,8 +5,8 @@ using System.Text;
 
 namespace RGEngine
 {
-	public class Component : gameComponent
-	{
+    public class GameObjectController : gameController
+    {
 
-	}
+    }
 }

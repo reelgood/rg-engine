@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RGEngine
 {
-	public class GameObject : baseClass3
+	public class GameObject : gameComponent
 	{
 		internal Transform _transform;
 		internal Camera _camera;

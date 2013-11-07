@@ -3,7 +3,7 @@ using SharpDX.Direct3D9;
 
 namespace RGEngine
 {
-	public class GraphicsDevice : baseClass1
+	public class GraphicsDevice : gameElement
 	{
 		Device _device;
 		Direct3D _direct3D;

@@ -5,7 +5,7 @@ using SharpDX.Direct3D9;
 
 namespace RGEngine
 {
-	public class GraphicSystem : baseClass1
+	public class GraphicSystem : gameElement
 	{
 		public readonly int DefaultScreenWidth = 800;
 		public readonly int DefaultScreenHeight = 600;

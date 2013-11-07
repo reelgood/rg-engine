@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RGEngine
 {
-	public abstract class baseClass1 : IObject, IDisposable
+	public abstract class gameElement : IObject, IDisposable
 	{
 		List<IDisposable> _toDispose;
 

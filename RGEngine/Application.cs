@@ -4,18 +4,20 @@ using SharpDX.Direct3D9;
 
 namespace RGEngine
 {
-	public class Application : baseClass2
+	public class Application : gameController
 	{
 		private GraphicSystem _graphics;
+        private GameObjectController _gob_controller;
 				
 		public void Run()
 		{
 			_graphics = new GraphicSystem(_mainLoop);
 			Initialize();
 			_graphics.StartRenderLoop();
+            _gob_controller = new GameObjectController();
 
 			Hook.AddMethod(Render, HookType.Render);
-			Hook.AddMethod(OnGUI, HookType.GUI);
+			Hook.AddMethod(GUI, HookType.GUI);
 		}
 
 
