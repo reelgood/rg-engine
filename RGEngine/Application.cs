@@ -12,10 +12,9 @@ namespace RGEngine
 		{
 			_graphics = new GraphicSystem(_mainLoop);
 			Initialize();
-			_graphics.StartRenderLoop();
 
-			Hook.AddMethod(Render, HookType.Render);
-			Hook.AddMethod(OnGUI, HookType.GUI);
+			// Always call StartRenderLoop last
+			_graphics.StartRenderLoop();
 		}
 
 
@@ -28,11 +27,9 @@ namespace RGEngine
 
 		private void _mainLoop()
 		{
-			// TODO: Run start functions here
-
+			Hook.RunStartMethods();
 			Time.Update();
 			Input.GatherInput();
-			Update();
 			Hook.DoUpdate();
 		}
 

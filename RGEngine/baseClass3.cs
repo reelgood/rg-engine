@@ -6,9 +6,7 @@ namespace RGEngine
 	{
 		private GameObject _gameObject;
 
-
-
-
+			
 		public Transform Transform
 		{
 			get

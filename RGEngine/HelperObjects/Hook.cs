@@ -1,4 +1,6 @@
-﻿namespace RGEngine
+﻿using System.Collections.Generic;
+
+namespace RGEngine
 {
 	public enum HookType
 	{
@@ -63,12 +65,27 @@
 					DisposeFunc += func;
 					break;
 			}
-
 		}
-
+		
 		static public void RemoveMethod(Function func)
 		{
 			UpdateLoop -= func;
+		}
+
+
+
+		static private Queue<Function> _startFuncQueue = null;
+		static internal void AddStarterMethod(Function func)
+		{
+			if (_startFuncQueue == null) _startFuncQueue = new Queue<Function>();
+			_startFuncQueue.Enqueue(func);
+		}
+		static internal void RunStartMethods()
+		{
+			if (_startFuncQueue == null) return;
+			while (_startFuncQueue.Count > 0)
+				_startFuncQueue.Dequeue().Invoke();
+			_startFuncQueue = null;
 		}
 	}
 }

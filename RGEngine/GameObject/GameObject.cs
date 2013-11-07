@@ -20,6 +20,7 @@ namespace RGEngine
 		/// </summary>
 		public GameObject()
 		{
+			_components = new List<Component>();
 			_setGameObject(this);
 			AddComponent(typeof(Transform));
 		}
@@ -30,6 +31,7 @@ namespace RGEngine
 		/// <param name="Name">Name of the GameObject</param>
 		public GameObject(string Name)
 		{
+			_components = new List<Component>();
 			_setGameObject(this);
 			AddComponent(typeof(Transform));
 		}
@@ -66,7 +68,6 @@ namespace RGEngine
 
 			_components.Add(c);
 			c._setGameObject(this);
-
 			ToDispose(c);
 			return c;
 		}
@@ -81,6 +82,23 @@ namespace RGEngine
 				}
 			}
 			return null;
+		}
+
+
+		public static void Destroy(GameObject gameObject)
+		{
+
+			for (int i = 0; i < gameObject._components.Count; i++)
+			{
+				gameObject._components[i].Dispose();
+				gameObject._components[i] = null;
+			}
+		}
+
+		protected override void OnDispose()
+		{
+
+			Debug.Log("DISPOSING GOB!!", 500);
 		}
 	}
 }

@@ -76,6 +76,7 @@
     <Compile Include="HelperObjects\Time.cs" />
     <Compile Include="GameObject\Component\Transform.cs" />
     <Compile Include="GameObject\Component\Renderer.cs" />
+    <Compile Include="Screen\Screen.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="BaseClassDiagram.cd" />
