@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace RGEngine
 {
@@ -23,40 +21,37 @@ namespace RGEngine
 			_setGameObject(this);
 			AddComponent(typeof(Transform));
 		}
-
-		protected override void Start()
-		{
-			Controllers.GameObjectController.UpdateMe(this);
-		}
+		
 		/// <summary>
 		/// Creates a new GameObject, with name
 		/// </summary>
 		/// <param name="Name">Name of the GameObject</param>
 		public GameObject(string Name)
 		{
-			Controllers.GameObjectController.UpdateMe(this);
 			_components = new List<Component>();
 			_setGameObject(this);
 			AddComponent(typeof(Transform));
 		}
 
+		protected override void Start()
+		{
+			Controllers.GameObjectController.UpdateMe(this);
+		}
 
 
 		public Component AddComponent(Type componentType)
 		{
+			// If already contains this component
 			for (int i = 0; i < _components.Count; i++)
-			{
-				if (_components[i].GetType() == componentType)
-				{
-					// Already contains this component
+				if (_components[i].GetType() == componentType) 
 					return _components[i];
-				}
-			}
+
 			Component c = Activator.CreateInstance(componentType) as Component;
 			if (c is Transform) _transform = (Transform)c;
 			if (c is Renderer) _renderer = (Renderer)c;
 			if (c is Camera) _camera = (Camera)c;
-
+			if (c is MeshFilter) _meshFilter = (MeshFilter)c;
+		
 			_components.Add(c);
 			c._setGameObject(this);
 			ToDispose(c);
@@ -66,15 +61,10 @@ namespace RGEngine
 		public Component GetComponent(Type componentType)
 		{
 			for (int i = 0; i < _components.Count; i++)
-			{
 				if (_components.GetType() == componentType)
-				{
 					return _components[i];
-				}
-			}
 			return null;
 		}
-
 
 		protected override void Update()
 		{
@@ -96,7 +86,6 @@ namespace RGEngine
 		
 		public override void Dispose()
 		{
-
 			base.Dispose();
 		}
 

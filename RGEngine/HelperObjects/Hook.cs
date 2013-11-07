@@ -10,10 +10,12 @@ namespace RGEngine
 		FixedUpdate,
 		LateUpdate,
 		PreRender,
-		PostRender,
-		Dispose
+		PostRender
 	}
 
+	/// <summary>
+	/// A static controller class for hooking up methods to be called by the main game loop.
+	/// </summary>
 	public static class Hook
 	{
 		public delegate void Function();
@@ -25,7 +27,9 @@ namespace RGEngine
 		static internal event Function LateUpdateLoop;
 		static internal event Function PreRenderLoop;
 		static internal event Function PostRenderLoop;
-		static internal event Function DisposeFunc;
+
+		static private Queue<Function> _startFuncQueue = null;
+		static private Queue<Function> _endFuncQueue = null;
 
 		static internal void DoUpdate() { if (UpdateLoop != null) UpdateLoop(); }
 		static internal void DoRender() { if (RenderLoop != null) RenderLoop(); }
@@ -34,8 +38,12 @@ namespace RGEngine
 		static internal void DoLateUpdateLoop() { if (LateUpdateLoop != null) LateUpdateLoop(); }
 		static internal void DoPreRenderLoop() { if (PreRenderLoop != null) PreRenderLoop(); }
 		static internal void DoPostRenderLoop() { if (PostRenderLoop != null) PostRenderLoop(); }
-		static internal void DoDispose() { if (DisposeFunc != null) DisposeFunc(); }
-				
+	
+		/// <summary>
+		/// Adds a method to the update queue
+		/// </summary>
+		/// <param name="func">The function to be called</param>
+		/// <param name="type">The type of function. Results in the time the function is called.</param>
 		static public void AddMethod(Function func, HookType type)
 		{
 			switch (type)
@@ -61,31 +69,58 @@ namespace RGEngine
 				case HookType.PostRender:
 					PostRenderLoop += func;
 					break;
-				case HookType.Dispose:
-					DisposeFunc += func;
-					break;
 			}
 		}
 		
+		/// <summary>
+		/// Removes a method from the update queue
+		/// </summary>
+		/// <param name="func">The method to remove</param>
 		static public void RemoveMethod(Function func)
 		{
 			UpdateLoop -= func;
 		}
-
-
-
-		static private Queue<Function> _startFuncQueue = null;
-		static internal void AddStarterMethod(Function func)
+			
+		/// <summary>
+		/// Adds a function to be called at the very BEGINNING of the game loop
+		/// </summary>
+		/// <param name="func">The function to be called</param>
+		static public void AddStartMethod(Function func)
 		{
 			if (_startFuncQueue == null) _startFuncQueue = new Queue<Function>();
 			_startFuncQueue.Enqueue(func);
 		}
+		
+		/// <summary>
+		/// Adds a function to be called at the very END of the game loop
+		/// </summary>
+		/// <param name="func"></param>
+		static public void AddEndMethod(Function func)
+		{
+			if (_endFuncQueue == null) _endFuncQueue = new Queue<Function>();
+			_endFuncQueue.Enqueue(func);
+		}
+
+		/// <summary>
+		/// Executes enqueued start functions
+		/// </summary>
 		static internal void RunStartMethods()
 		{
 			if (_startFuncQueue == null) return;
 			while (_startFuncQueue.Count > 0)
 				_startFuncQueue.Dequeue().Invoke();
 			_startFuncQueue = null;
+		}
+		
+		/// <summary>
+		/// Executes enqueued end functions
+		/// </summary>
+		static internal void RunEndMethods()
+		{
+			if (_endFuncQueue == null) return;
+			while (_endFuncQueue.Count > 0)
+				_endFuncQueue.Dequeue().Invoke();
+			_endFuncQueue = null;
 		}
 	}
 }

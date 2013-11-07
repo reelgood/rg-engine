@@ -3,7 +3,7 @@
   <Class Name="RGEngine.Application" Collapsed="true">
     <Position X="5.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAAAQAAAAIAAAAAAAAAAAACIAAAAAAAAAI=</HashCode>
+      <HashCode>AAAAAAAAACAAAAAAAIAAAAAACAAAAAACIAAAICAAAAI=</HashCode>
       <FileName>Application.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -29,7 +29,7 @@
   <Class Name="RGEngine.GameObject" Collapsed="true">
     <Position X="9.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAIIAEAAQAABQAAEAAAAAAAAAAACCAAAAA=</HashCode>
+      <HashCode>AAQAAAAAACAIIAAAAQAABAAAFABAAAAAABAACCAAAAA=</HashCode>
       <FileName>GameObject\GameObject.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -43,7 +43,7 @@
   <Class Name="RGEngine.gameComponent" Collapsed="true">
     <Position X="8.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQCAAARACAAAAAAAAAAAAQACAAAAAAAABCAAAIAAAA=</HashCode>
+      <HashCode>AAQCAAARACAAAIEAAAAAAAQADAAAAAAQABCAICIAAAA=</HashCode>
       <FileName>GameObject\gameComponent.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -54,17 +54,17 @@
       <FileName>GameObject\Component\Transform.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="RGEngine.GraphicsDevice" Collapsed="true">
+  <Class Name="RGEngine.GraphicsDevice">
     <Position X="11.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAAgAAAAAAAAAgAAAAQAAAAABAAAgAAAAAAAAACAAAA=</HashCode>
+      <HashCode>CAAgAAAAAAAAAgAAAAQAAIAABAAAgAAAAAAAAACAAAA=</HashCode>
       <FileName>GraphicsSystem\GraphicsDevice.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RGEngine.GraphicSystem" Collapsed="true">
     <Position X="13.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAgAAAAAAABIAAABAAAAQAAAQABAAAAAABAI=</HashCode>
+      <HashCode>AAAAABAABkAACgAABAQAAATAEARQAAAAEBBQCiAAAAI=</HashCode>
       <FileName>GraphicsSystem\GraphicSystem.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -121,8 +121,6 @@
   <Class Name="RGEngine.Hook">
     <Position X="0.5" Y="2.5" Width="1.5" />
     <Members>
-      <Event Name="DisposeFunc" Hidden="true" />
-      <Method Name="DoDispose" Hidden="true" />
       <Method Name="DoFixedUpdate" Hidden="true" />
       <Method Name="DoGUI" Hidden="true" />
       <Method Name="DoLateUpdateLoop" Hidden="true" />
@@ -149,7 +147,7 @@
       </Delegate>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAoAAgAAAAAAIIABAAAAEAAJAACAgAAACEAAAALAAEA=</HashCode>
+      <HashCode>AAoAAgAAAAAAIIABEAEAMAAJAAAAgAAACEAAEAPAAEA=</HashCode>
       <FileName>HelperObjects\Hook.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -219,7 +217,7 @@
   <Class Name="RGEngine.GameObjectController" Collapsed="true">
     <Position X="7.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAAAAAAAACAAABAAAAAAAABABAAkAAAA=</HashCode>
       <FileName>GameObjectController.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -232,12 +230,15 @@
   </Interface>
   <Interface Name="System.IDisposable">
     <Position X="11.25" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier />
   </Interface>
   <Enum Name="RGEngine.HookType" Collapsed="true">
     <Position X="6.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAiAAAAAAAAAAIAAABAAAAEAAABAAAAACAAA=</HashCode>
+      <HashCode>AAQAAAAAAgAAAAAAAAAAIAAABAAAAEAAABAAAAACAAA=</HashCode>
       <FileName>HelperObjects\Hook.cs</FileName>
     </TypeIdentifier>
   </Enum>

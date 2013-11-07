@@ -21,8 +21,11 @@ namespace RGEngine
 			if (_toDispose == null) return;
 			for (int i = 0; i < _toDispose.Count; i++)
 			{
-				_toDispose[i].Dispose();
-				_toDispose[i] = null;
+				if (_toDispose[i] != null)
+				{
+					_toDispose[i].Dispose();
+					_toDispose[i] = null;
+				}
 			}
 			_toDispose.Clear();
 			_toDispose = null; 

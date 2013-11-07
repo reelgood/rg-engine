@@ -8,21 +8,19 @@ namespace RGEngine
 		private bool _enabled;
 		private GameObject _gameObject;
 
-
 		public bool Enabled { get { return _enabled; } set { _enabled = value; } }
 
 
 		public gameComponent()
 		{
-			Hook.AddStarterMethod(Start);
+			Hook.AddStartMethod(Start);
 		}
 
         protected virtual void Start() { }
         protected virtual void Update() { }
         protected virtual void Render() { }
 		protected virtual void GUI() { }
-
-
+		
 		internal void _update()
 		{
 			if (_enabled)
@@ -52,7 +50,7 @@ namespace RGEngine
 		{
 			get
 			{
-				return _gameObject.Transform;
+				return _gameObject._transform;
 			}
 		}
 
@@ -60,7 +58,7 @@ namespace RGEngine
 		{
 			get
 			{
-				return _gameObject.Camera;
+				return _gameObject._camera;
 			}
 		}
 

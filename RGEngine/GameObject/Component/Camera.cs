@@ -7,5 +7,6 @@ namespace RGEngine
 {
 	public class Camera : Component
 	{
+
 	}
 }

@@ -6,7 +6,10 @@ namespace RGEngine
 {
 	public class Application : gameController
 	{
+		private bool _isRunning;
 		private GraphicSystem _graphics;
+
+		public GraphicSystem Graphics { get { return _graphics; } }
 
 		public void Run()
 		{
@@ -14,17 +17,19 @@ namespace RGEngine
 			_graphics = new GraphicSystem(_logic, _render);
 			Controllers.Application = this;
 			Controllers.GraphicSystem = _graphics;
-			Initialize();
+			_initialize();
 
+			_isRunning = true;
 			_graphics.StartRenderLoop(); // MUST ALWAYS BE LAST!
+			_graphics.Dispose();		// sortoff
 		}
 
 
-		private void Initialize()
+		private void _initialize()
 		{
 			Time.Initialize();
-			Debug.Initialize(_graphics.graphicDevice);
-			Input.Initialize(_graphics.renderForm);
+			Debug.Initialize(_graphics.Device);
+			Input.Initialize(_graphics.Window);
 		}
 
 		private void _logic()
@@ -38,21 +43,24 @@ namespace RGEngine
 		private void _render()
 		{
 			Hook.DoPreRenderLoop();
-			_graphics.graphicDevice.Clear(ClearFlags.ZBuffer | ClearFlags.Target, Color.Black, 0.0f, 0);
-			_graphics.graphicDevice.BeginScene();
+			_graphics.Device.Clear(ClearFlags.ZBuffer | ClearFlags.Target, Color.Black, 0.0f, 0);
+			_graphics.Device.BeginScene();
 
 			Hook.DoRender();
 			Hook.DoGUI();
 			Debug.Print();
 
-			_graphics.graphicDevice.EndScene();
-			_graphics.graphicDevice.Present();
+			_graphics.Device.EndScene();
+			_graphics.Device.Present();
 			Hook.DoPostRenderLoop();
+			
+			Hook.RunEndMethods();
+			if (!_isRunning) _graphics.StopRenderLoop();
 		}
 
 		protected void Exit()
 		{
-			_graphics.StopRenderLoop();
+			_isRunning = false;
 		}
 	}
 }

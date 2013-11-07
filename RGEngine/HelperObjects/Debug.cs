@@ -66,8 +66,20 @@ namespace RGEngine
 				Quality = FontQuality.Antialiased,
 				Weight = FontWeight.SemiBold
 			};
-			_debugTextFont = new Font(device, fontDescription);
-			
+			_debugTextFont = new Font(_device, fontDescription);
+
+			Controllers.GraphicSystem.OnDeviceResetStart += new Action(GraphicSystem_OnDeviceResetStart);
+			Controllers.GraphicSystem.OnDeviceResetDone += new Action<Device>(GraphicSystem_OnDeviceResetDone);
+		}
+
+		static void GraphicSystem_OnDeviceResetDone(Device obj)
+		{
+			_debugTextFont.OnResetDevice();
+		}
+
+		static void GraphicSystem_OnDeviceResetStart()
+		{
+			_debugTextFont.OnLostDevice();
 		}
 
 		static public void Log(string str, float displayTime = 0)
@@ -111,6 +123,11 @@ namespace RGEngine
 		static private void DrawText(string text, int yOffSet)
 		{
 			_debugTextFont.DrawText(null, text, 0, yOffSet, Color.White);
+		}
+
+		static internal void Dispose()
+		{
+			_debugTextFont.Dispose();
 		}
 	}
 }
