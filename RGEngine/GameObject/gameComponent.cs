@@ -2,11 +2,14 @@
 
 namespace RGEngine
 {
-	public abstract class baseClass3 : baseClass2
+	public abstract class gameComponent : gameElement
 	{
 		private GameObject _gameObject;
 
-			
+        protected virtual void Start() { }
+        protected virtual void Update() { }
+        protected virtual void Render() { }
+        protected virtual void OnGUI() { }
 		public Transform Transform
 		{
 			get

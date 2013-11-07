@@ -58,9 +58,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application.cs" />
-    <Compile Include="baseClass3.cs" />
-    <Compile Include="baseClass2.cs" />
-    <Compile Include="baseClass1.cs" />
+    <Compile Include="GameObject\gameComponent.cs" />
+    <Compile Include="gameController.cs" />
+    <Compile Include="gameElement.cs" />
+    <Compile Include="GameObjectController.cs" />
     <Compile Include="GameObject\Component\Camera.cs" />
     <Compile Include="GameObject\Component.cs" />
     <Compile Include="GameObject\GameObject.cs" />
