@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="RGEngine.Application" Collapsed="true">
+    <Position X="1" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAoAAAAAAAAAAAACAAAAAAAAAAI=</HashCode>
+      <FileName>Application.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RGEngine.baseClass2" Collapsed="true">
+    <Position X="6.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAABCAAAAAAAA=</HashCode>
+      <FileName>baseClass2.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RGEngine.baseClass1" Collapsed="true">
+    <Position X="8.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAgAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>baseClass1.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="System.Object" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="RGEngine.GameObject" Collapsed="true">
+    <Position X="3.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIIAEAAQAABQAAEAAAAAAAAAAACCAAAAA=</HashCode>
+      <FileName>GameObject\GameObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RGEngine.Component" Collapsed="true">
+    <Position X="8.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObject\Component.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RGEngine.baseClass3" Collapsed="true">
+    <Position X="7.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAARAAAAAAAAAAAAAAQACAAAAAAAAACAAAIAAAA=</HashCode>
+      <FileName>baseClass3.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RGEngine.Transform" Collapsed="true">
+    <Position X="5.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObject\Component\Transform.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RGEngine.GraphicsDevice" Collapsed="true">
+    <Position X="14.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAACAAAA=</HashCode>
+      <FileName>GraphicsSystem\GraphicsDevice.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RGEngine.GraphicSystem" Collapsed="true">
+    <Position X="16.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAIAAABAAAAAAAAIAAAAAAAABAA=</HashCode>
+      <FileName>GraphicsSystem\GraphicSystem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RGEngine.Debug" Collapsed="true">
+    <Position X="19.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAAQAAIAAACAAAAAgAgAAAAAAAQAAEAIA=</HashCode>
+      <FileName>HelperObjects\Debug.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RGEngine.Time" Collapsed="true">
+    <Position X="21" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIUKAAAAgIAAAQABQBAEIDAQAAgAAgAAAgAAAAAAAQA=</HashCode>
+      <FileName>HelperObjects\Time.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RGEngine.Hook" Collapsed="true">
+    <Position X="21" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAoAAgAAAAAAIIABAAAAEAAJAACAgAAACEAAAALAAEA=</HashCode>
+      <FileName>HelperObjects\Hook.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RGEngine.Input" Collapsed="true">
+    <Position X="19.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAkAAUiAAgEAAAQApAAAAQIBQEABJgQGBgE=</HashCode>
+      <FileName>HelperObjects\Input.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RGEngine.Renderer" Collapsed="true">
+    <Position X="10" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObject\Component\Renderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RGEngine.MeshFilter" Collapsed="true">
+    <Position X="12.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObject\Component\MeshFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RGEngine.MeshRenderer" Collapsed="true">
+    <Position X="10" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObject\Component\MeshRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RGEngine.Camera" Collapsed="true">
+    <Position X="7.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObject\Component\Camera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="RGEngine.IObject" Collapsed="true">
+    <Position X="19.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IObject.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="System.IDisposable">
+    <Position X="1.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Enum Name="RGEngine.HookType" Collapsed="true">
+    <Position X="19.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAiAAAAAAAAAAIAAABAAAAEAAABAAAAACAAA=</HashCode>
+      <FileName>HelperObjects\Hook.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="RGEngine.MouseButton" Collapsed="true">
+    <Position X="21" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACACQAAAAAAA=</HashCode>
+      <FileName>HelperObjects\Input.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
