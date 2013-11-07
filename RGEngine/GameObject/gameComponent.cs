@@ -5,7 +5,7 @@ namespace RGEngine
 	public abstract class gameComponent : gameElement
 	{
 
-		private bool _enabled;
+		private bool _enabled = true;
 		private GameObject _gameObject;
 
 

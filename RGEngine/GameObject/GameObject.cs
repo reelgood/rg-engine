@@ -11,6 +11,9 @@ namespace RGEngine
 		internal Camera _camera;
 		internal Renderer _renderer;
 		internal MeshFilter _meshFilter;
+        internal Screen _hookedScreen;
+        internal bool _screenActive;
+        internal bool _keepUpdatingWhenScreenDisabled;
 		private List<Component> _components;
 		
 		/// <summary>
@@ -34,7 +37,6 @@ namespace RGEngine
 		/// <param name="Name">Name of the GameObject</param>
 		public GameObject(string Name)
 		{
-			Controllers.GameObjectController.UpdateMe(this);
 			_components = new List<Component>();
 			_setGameObject(this);
 			AddComponent(typeof(Transform));

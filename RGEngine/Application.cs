@@ -8,12 +8,18 @@ namespace RGEngine
 	{
 		private GraphicSystem _graphics;
 
-		public void Run()
+        public void Run()
+        {
+            Run<Screen_Generic>();
+        }
+		public void Run<BootScreen>()
 		{
 			Controllers.GameObjectController = new GameObjectController();
 			_graphics = new GraphicSystem(_logic, _render);
 			Controllers.Application = this;
 			Controllers.GraphicSystem = _graphics;
+            Screen.ActivateScreen<BootScreen>();
+
 			Initialize();
 
 			_graphics.StartRenderLoop(); // MUST ALWAYS BE LAST!
