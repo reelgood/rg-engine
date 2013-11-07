@@ -7,6 +7,8 @@ namespace RGEngine
 {
     public class GameObjectController : gameController
     {
-
+		public GameObjectController()
+		{
+		}
     }
 }

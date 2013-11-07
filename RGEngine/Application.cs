@@ -13,11 +13,10 @@ namespace RGEngine
 		{
 			_graphics = new GraphicSystem(_mainLoop);
 			Initialize();
-			_graphics.StartRenderLoop();
-            _gob_controller = new GameObjectController();
+			_gob_controller = new GameObjectController();
 
-			Hook.AddMethod(Render, HookType.Render);
-			Hook.AddMethod(GUI, HookType.GUI);
+
+			_graphics.StartRenderLoop(); // MUST ALWAYS BE LAST!
 		}
 
 
@@ -30,15 +29,11 @@ namespace RGEngine
 
 		private void _mainLoop()
 		{
-			// TODO: Run start functions here
-
+			Hook.RunStartMethods();
 			Time.Update();
 			Input.GatherInput();
-			Update();
 			Hook.DoUpdate();
 		}
-
-
 
 		protected void Exit()
 		{

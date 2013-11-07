@@ -22,9 +22,9 @@ namespace RGEngine
 			for (int i = 0; i < _toDispose.Count; i++)
 			{
 				_toDispose[i].Dispose();
-				if (_toDispose[i] is baseClass1)
+				if (_toDispose[i] is gameElement)
 				{
-					var tmp = _toDispose[i] as baseClass1;
+					var tmp = _toDispose[i] as gameElement;
 					tmp.OnDispose();
 				}
 			}

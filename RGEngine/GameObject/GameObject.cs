@@ -36,20 +36,6 @@ namespace RGEngine
 			AddComponent(typeof(Transform));
 		}
 
-		internal void _update()
-		{
-			throw new System.NotImplementedException();
-		}
-
-		internal void _render()
-		{
-			throw new System.NotImplementedException();
-		}
-
-		internal void _ongui()
-		{
-			throw new System.NotImplementedException();
-		}
 
 		public Component AddComponent(Type componentType)
 		{
@@ -85,6 +71,12 @@ namespace RGEngine
 		}
 
 
+		protected override void Update()
+		{
+			if (_components == null) return;
+			for (int i = 0; i < _components.Count; i++) _components[i]._update();
+		}
+
 		public static void Destroy(GameObject gameObject)
 		{
 
@@ -94,6 +86,9 @@ namespace RGEngine
 				gameObject._components[i] = null;
 			}
 		}
+
+
+
 
 		protected override void OnDispose()
 		{
